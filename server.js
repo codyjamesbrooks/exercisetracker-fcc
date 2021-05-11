@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 });
 
 const db = require("./db");
-const User = require("./models/UserSchema");
+const UserController = require("./controllers/UserController");
 const Exercise = require("./models/ExerciseSchema");
 
 const listener = app.listen(process.env.PORT || 3000, () => {
