@@ -1,11 +1,14 @@
 const User = require("../models/UserSchema");
 
 const UserController = {
-  createAndSave: function (username, done) {
+  createAndSave: function (username, res) {
     const newUser = new User({ username: username });
     newUser.save((err, user) => {
       if (err) return console.error(err);
-      done(null, user);
+      res.json({
+        username: user.username,
+        _id: user._id,
+      });
     });
   },
 };
