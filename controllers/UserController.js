@@ -11,6 +11,18 @@ const UserController = {
       });
     });
   },
+  getAllUsers: function (res) {
+    User.find((err, users) => {
+      if (err) return console.error(err);
+      users = users.map((user) => {
+        return {
+          username: user.username,
+          _id: user._id,
+        };
+      });
+      res.json(users);
+    });
+  },
 };
 
 module.exports = UserController;

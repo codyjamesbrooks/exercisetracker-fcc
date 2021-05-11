@@ -16,7 +16,11 @@ app.get("/", (req, res) => {
 
 app.post("/api/users", function (req, res) {
   UserController.createAndSave(req.body.username, res);
-  // res.json({ username: req.body.username });
+});
+
+app.get("/api/users", function (req, res) {
+  UserController.getAllUsers(res);
+  // res.json({ test: "test" });
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
