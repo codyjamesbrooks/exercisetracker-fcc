@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const db = require("./db");
 const UserController = require("./controllers/UserController");
+const EntryValidation = require("./controllers/EntryValidation");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); // Express body parser

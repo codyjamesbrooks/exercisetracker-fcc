@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema({
-  description: String,
-  duration: Number,
+  description: { type: String, required: [true, "description is required"] },
+  duration: { type: Number, required: true },
   date: Date,
 });
 

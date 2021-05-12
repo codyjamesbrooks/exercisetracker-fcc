@@ -1,0 +1,3 @@
+EntryValidation = {};
+
+module.exports = EntryValidation;

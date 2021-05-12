@@ -26,10 +26,10 @@ const UserController = {
   },
   addExercise: function (_id, exercise, res) {
     User.findById({ _id: _id }, (err, user) => {
-      if (err) return console.error(err);
+      if (err) return res.send(err);
       user.exercises.push(exercise);
       user.save((err, newUser) => {
-        if (err) return console.error(err);
+        if (err) return res.send(err);
         res.json({
           _id: _id,
           username: newUser.username,
