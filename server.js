@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const db = require("./db");
 const UserController = require("./controllers/UserController");
-const EntryValidation = require("./controllers/EntryValidation");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); // Express body parser
@@ -32,7 +31,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
     duration: +req.body.duration,
     date: date.toDateString(),
   };
-  UserController.addExercise(req.body[":_id"], exercise, res);
+  UserController.addExercise(req.params["_id"], exercise, res);
 });
 
 app.get("/api/users/:_id/logs", (req, res) => {

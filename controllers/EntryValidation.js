@@ -1,3 +1,0 @@
-EntryValidation = {};
-
-module.exports = EntryValidation;
