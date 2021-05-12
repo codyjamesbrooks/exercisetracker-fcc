@@ -33,8 +33,8 @@ const UserController = {
         res.json({
           username: newUser.username,
           date: exercise.date.toDateString(),
-          _id: newUser.exercises[newUser.exercises.length - 1]._id,
-          duration: exercise.duration,
+          _id: newUser._id,
+          duration: +exercise.duration,
           description: exercise.description,
         });
       });
@@ -43,7 +43,6 @@ const UserController = {
   getUserLogs: function (_id, searchParameters, res) {
     User.findById({ _id: _id }, (err, user) => {
       if (err) return console.error(err);
-
       let logsInQuestion = user.exercises.sort((a, b) => a.date - b.date);
 
       if (searchParameters.from) {
