@@ -23,9 +23,9 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users/:_id/exercises", (req, res) => {
-  console.log(req.body.date === "", req.body.date === "undefined");
+  console.log(req.body.date === "", typeof req.body.date === "undefined");
   let date =
-    req.body.date === "" || req.body.date === "undefined"
+    req.body.date === "" || typeof req.body.date === "undefined"
       ? new Date()
       : new Date(req.body.date);
   const exercise = {
