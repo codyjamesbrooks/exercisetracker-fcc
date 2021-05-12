@@ -34,7 +34,7 @@ const UserController = {
           username: newUser.username,
           date: exercise.date.toDateString(),
           _id: newUser._id,
-          duration: +exercise.duration,
+          duration: exercise.duration,
           description: exercise.description,
         });
       });
