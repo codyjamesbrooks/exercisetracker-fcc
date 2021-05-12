@@ -34,6 +34,16 @@ const UserController = {
       });
     });
   },
+  getUserLogs: function (_id, res) {
+    User.findById({ _id: _id }, (err, user) => {
+      if (err) return console.error(err);
+      res.json({
+        username: user.username,
+        log: user.exercises,
+        count: user.exercises.length,
+      });
+    });
+  },
   deleteAllUser: function (res) {
     User.deleteMany({}, (err) => {
       if (err) return console.error(err);

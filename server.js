@@ -13,15 +13,15 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.post("/api/users", function (req, res) {
+app.post("/api/users", (req, res) => {
   UserController.createAndSave(req.body.username, res);
 });
 
-app.get("/api/users", function (req, res) {
+app.get("/api/users", (req, res) => {
   UserController.getAllUsers(res);
 });
 
-app.post("/api/users/:_id/exercises", function (req, res) {
+app.post("/api/users/:_id/exercises", (req, res) => {
   let date = req.body.date ? Date.parse(req.body.date) : Date.now();
   const exercise = {
     description: req.body.description,
@@ -30,6 +30,18 @@ app.post("/api/users/:_id/exercises", function (req, res) {
   };
   UserController.addExercise(req.body[":_id"], exercise, res);
 });
+
+app.get("/api/users/:_id/logs", (req, res) => {
+  let searchModifiers = {
+    from: req.query.from,
+    to: req.query.to,
+    limit: req.query.limit,
+  };
+  console.log(searchModifiers);
+  UserController.getUserLogs(req.params._id, res);
+});
+
+app.get("/api/users/:_id/logs/");
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
