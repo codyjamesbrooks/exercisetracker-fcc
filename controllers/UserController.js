@@ -32,7 +32,7 @@ const UserController = {
         if (err) return res.send(err);
         res.json({
           username: newUser.username,
-          date: exercise.date.toDateString(),
+          date: exercise.date,
           _id: newUser._id,
           duration: exercise.duration,
           description: exercise.description,
