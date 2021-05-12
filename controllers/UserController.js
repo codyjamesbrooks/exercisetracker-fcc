@@ -31,9 +31,9 @@ const UserController = {
       user.save((err, newUser) => {
         if (err) return res.send(err);
         res.json({
-          _id: _id,
           username: newUser.username,
           date: exercise.date.toDateString(),
+          _id: newUser.exercises[newUser.exercises.length - 1]._id,
           duration: exercise.duration,
           description: exercise.description,
         });
