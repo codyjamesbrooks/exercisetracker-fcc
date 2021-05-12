@@ -33,7 +33,7 @@ const UserController = {
         res.json({
           _id: _id,
           username: newUser.username,
-          date: exercise.date,
+          date: exercise.date.toDateString(),
           duration: exercise.duration,
           description: exercise.description,
         });

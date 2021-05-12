@@ -23,7 +23,9 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users/:_id/exercises", (req, res) => {
-  let date = req.body.date ? Date.parse(req.body.date) : Date.now();
+  let date = req.body.date
+    ? new Date(Date.parse(req.body.date))
+    : new Date(Date.now());
   const exercise = {
     description: req.body.description,
     duration: req.body.duration,
