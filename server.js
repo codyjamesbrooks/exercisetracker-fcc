@@ -32,16 +32,12 @@ app.post("/api/users/:_id/exercises", (req, res) => {
 });
 
 app.get("/api/users/:_id/logs", (req, res) => {
-  let searchModifiers = {
-    from: req.query.from,
-    to: req.query.to,
-    limit: req.query.limit,
-  };
-  console.log(searchModifiers);
-  UserController.getUserLogs(req.params._id, res);
+  let searchParameters = {};
+  if (req.query.from) searchParameters.from = Date.parse(req.query.from);
+  if (req.query.to) searchParameters.to = Date.parse(req.query.to);
+  if (req.query.limit) searchParameters.limit = req.query.limit;
+  UserController.getUserLogs(req.params._id, searchParameters, res);
 });
-
-app.get("/api/users/:_id/logs/");
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);

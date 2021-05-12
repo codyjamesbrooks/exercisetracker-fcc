@@ -34,13 +34,32 @@ const UserController = {
       });
     });
   },
-  getUserLogs: function (_id, res) {
+  getUserLogs: function (_id, searchParameters, res) {
     User.findById({ _id: _id }, (err, user) => {
       if (err) return console.error(err);
+
+      let logsInQuestion = user.exercises.sort((a, b) => a.date - b.date);
+
+      if (searchParameters.from) {
+        logsInQuestion = logsInQuestion.filter(
+          (exerciseLog) => exerciseLog.date >= searchParameters.from
+        );
+      }
+
+      if (searchParameters.to) {
+        logsInQuestion = logsInQuestion.filter(
+          (exerciseLog) => exerciseLog.date <= searchParameters.to
+        );
+      }
+
+      if (searchParameters.limit) {
+        logsInQuestion = logsInQuestion.slice(0, searchParameters.limit);
+      }
+
       res.json({
         username: user.username,
-        log: user.exercises,
-        count: user.exercises.length,
+        log: logsInQuestion,
+        count: logsInQuestion.length,
       });
     });
   },
