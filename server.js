@@ -39,6 +39,10 @@ app.get("/api/users/:_id/logs", (req, res) => {
   UserController.getUserLogs(req.params._id, searchParameters, res);
 });
 
+// app.get("/api/users/deleteAllUser", (req, res) => {
+//   UserController.deleteAllUser(res);
+// });
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });

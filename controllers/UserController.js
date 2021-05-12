@@ -30,7 +30,13 @@ const UserController = {
       user.exercises.push(exercise);
       user.save((err, newUser) => {
         if (err) return console.error(err);
-        res.json(newUser);
+        res.json({
+          _id: _id,
+          username: newUser.username,
+          date: exercise.date,
+          duration: exercise.duration,
+          description: exercise.description,
+        });
       });
     });
   },
